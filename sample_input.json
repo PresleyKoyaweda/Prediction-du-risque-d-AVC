@@ -1,0 +1,12 @@
+{
+  "gender": "Male",
+  "age": 76.0,
+  "hypertension": 1,
+  "heart_disease": 0,
+  "ever_married": "Yes",
+  "work_type": "Self-employed",
+  "Residence_type": "Rural",
+  "avg_glucose_level": 194.37,
+  "bmi": 27.0,
+  "smoking_status": "formerly smoked"
+}

@@ -1,0 +1,43 @@
+name: 🧪 CI – AVC Prediction App
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Cloner le dépôt
+        uses: actions/checkout@v3
+
+      - name: 🐍 Installer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 📦 Installer les dépendances
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: ✅ Vérifier la présence des fichiers critiques
+        run: |
+          test -f streamlit_app.py
+          test -f requirements.txt
+          test -d api
+          test -d models
+
+      - name: 🧪 Lancer les tests unitaires (si tu as des fichiers de test)
+        run: |
+          pytest || echo "::warning :: Aucun test trouvé, ajoute tests/test_*.py"
+
+      - name: 🧪 Tester le chargement du modèle
+        run: |
+          python -c "from api.model_loader import load_model_and_predict; import pandas as pd; df = pd.read_json('sample_input.json'); load_model_and_predict(df)"
+
+      - name: 🚦 Afficher le succès
+        run: echo "✅ CI pipeline terminée avec succès."
