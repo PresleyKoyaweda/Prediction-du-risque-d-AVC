@@ -1,9 +1,7 @@
-import pandas as pd 
+import pandas as pd
 from src.inference import load_model_and_predict
 
-def test_modell_prediction ():
-    
-    # Exemple de ligne issue du dataset
+def test_model_prediction():
     data = pd.DataFrame([{
         "gender": "Male",
         "age": 67,
@@ -16,7 +14,7 @@ def test_modell_prediction ():
         "bmi": 36.6,
         "smoking_status": "formerly smoked"
     }])
-    
-    prediction , proba = load_model_and_predict(data)
+
+    prediction, proba = load_model_and_predict(data)
     assert prediction in [0, 1]
-    assert 0.0 <= proba <= 1/0 
+    assert 0.0 <= proba <= 1.0
