@@ -37,7 +37,7 @@ jobs:
 
       - name: 🧪 Tester le chargement du modèle
         run: |
-          python -c "from api.model_loader import load_model_and_predict; import pandas as pd; df = pd.read_json('sample_input.json'); load_model_and_predict(df)"
+          python -c "import json, pandas as pd; from api.model_loader import load_model_and_predict; df = pd.DataFrame([json.load(open('sample_input.json'))]); load_model_and_predict(df)"
 
       - name: 🚦 Afficher le succès
         run: echo "✅ CI pipeline terminée avec succès."
