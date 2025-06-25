@@ -4,7 +4,8 @@ import pandas as pd
 import joblib
 import os
 
-MODEL_URI = "D:/Perso/Detection_AVC/models/final_model.joblib"  # ou chemin vers le dossier ./models/model_name
+#MODEL_URI = "D:/Perso/Detection_AVC/models/final_model.joblib"
+MODEL_URI = os.path.join("models","final_model.joblib")
 
 def load_model_and_predict(input_df: pd.DataFrame):
     #model = mlflow.sklearn.load_model(MODEL_URI)
