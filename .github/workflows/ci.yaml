@@ -31,9 +31,9 @@ jobs:
           test -d api
           test -d models
 
-      - name: 🧪 Lancer les tests unitaires (si tu as des fichiers de test)
+      - name: 🧪 Lancer les tests avec couverture
         run: |
-          pytest || echo "::warning :: Aucun test trouvé, ajoute tests/test_*.py"
+          pytest --cov=api --cov-report=xml --cov-report=term
 
       - name: 🧪 Tester le chargement du modèle
         run: |
