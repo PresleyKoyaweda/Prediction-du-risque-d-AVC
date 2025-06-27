@@ -11,3 +11,4 @@ fastapi==0.95.2
 uvicorn==0.22.0
 pydantic==1.10.8
 pytest-cov==4.1.0
+setuptools
