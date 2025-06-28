@@ -12,6 +12,6 @@ def load_model_and_predict(input_df: pd.DataFrame):
     model = joblib.load(MODEL_URI)
 
     prediction_proba = model.predict_proba(input_df)[:, 1]
-    prediction = (prediction_proba >= 0.5).astype(int)[0]
+    prediction = (prediction_proba >= 0.43).astype(int)[0]
 
     return prediction, float(prediction_proba[0])
