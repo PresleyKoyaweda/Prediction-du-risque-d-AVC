@@ -1,0 +1,35 @@
+# === ENVIRONNEMENTS VIRTUELS ===
+.venv/
+env/
+venv/
+ENV/
+*.egg-info/
+
+# === PYTHON CACHES ===
+__pycache__/
+*.py[cod]
+*.pyo
+
+# === STREAMLIT ===
+.streamlit/config.toml
+
+# === DONNÉES ET ARTEFACTS LOCAUX ===
+data/*.csv
+models/*.joblib
+artifacts/
+mlruns/
+
+# === TESTS & LOGS TEMPORAIRES ===
+.pytest_cache/
+.cache/
+*.log
+
+# === FICHIERS DE CONFIG SYSTEME ===
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# === AUTRES ===
+*.bak
+*.old
