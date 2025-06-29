@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Perso/Detection_AVC/src/mlruns/129219690159862811/4d9e36bf61234d21a93222f2f6089d71/artifacts
+end_time: 1751168243686
+entry_point_name: ''
+experiment_id: '129219690159862811'
+lifecycle_stage: active
+run_id: 4d9e36bf61234d21a93222f2f6089d71
+run_name: LogisticRegression_Optimised
+run_uuid: 4d9e36bf61234d21a93222f2f6089d71
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751168233338
+status: 3
+tags: []
+user_id: gpres

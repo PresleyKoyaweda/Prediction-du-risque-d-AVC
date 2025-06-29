@@ -102,5 +102,6 @@ with mlflow.start_run(run_name=name):
     )
 
     dump(model_pipeline, "D:/Perso/Detection_AVC/models/final_model.joblib") 
+    #dump(model_pipeline, os.path.join("models", "final_model.joblib"))
 
     print("✅ Entraînement terminé et modèle sauvegardé.")
