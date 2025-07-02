@@ -16,14 +16,13 @@ Les **accidents vasculaires cérébraux (AVC)** sont une cause majeure de **mort
 Ce projet vise à fournir un outil d’aide à la décision simple pour **détecter les patients à risque**  
 et permettre une **prise en charge précoce**.
 
-st.markdown("### 🔍 Facteurs de risque identifiés dans les données")
-st.info("""
+##### 🔍 Facteurs de risque identifiés dans les données
+
 - **Âge élevé** : les AVC surviennent majoritairement chez les patients de **plus de 60 ans**.
 - **Hypertension** : 13% des patients hypertendus ont eu un AVC, contre 4% des non-hypertendus.
 - **Maladie cardiaque** : le risque est multiplié par 4 chez les patients cardiaques.
 - **Glucose élevé** : des pics autour de 200 mg/dL sont fréquents chez les patients ayant subi un AVC.
 - **Tabagisme** : les anciens fumeurs sont les plus à risque (7,9%).
-""")
 
 ##### 🎯 Objectifs
 - Identifier les profils à risque à partir de données médicales
@@ -76,3 +75,5 @@ st.markdown("""
     <small>© 2025 – Outil de prédiction AVC – Fait avec ❤️ par Presley Koyaweda</small>
 </div>
 """, unsafe_allow_html=True)
+
+
