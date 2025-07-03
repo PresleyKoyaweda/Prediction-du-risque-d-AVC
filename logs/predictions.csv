@@ -1,0 +1,10 @@
+gender,age,hypertension,heart_disease,ever_married,work_type,Residence_type,avg_glucose_level,bmi,smoking_status,predictions,probability,timestamp
+Male,50,1,1,Yes,Private,Urban,100.0,25.0,never smoked,0,0.39938088163444085,2025-07-02T23:23:48.558914
+Female,33,0,0,No,Govt_job,Rural,200.0,34.0,smokes,0,0.006540569722078295,2025-07-02T23:24:15.746692
+Male,33,1,0,No,Self-employed,Urban,100.0,32.0,formerly smoked,0,0.09744335293701115,2025-07-02T23:24:43.470448
+Male,33,1,0,No,Self-employed,Urban,100.0,32.0,formerly smoked,0,0.09744335293701115,2025-07-02T23:24:48.394389
+Male,76,1,0,Yes,Self-employed,Rural,194.0,27.0,formerly smoked,1,0.7701498546216602,2025-07-02T23:35:20.114579
+Male,64,1,1,Yes,Govt_job,Rural,194.0,27.0,smokes,1,0.6400836238002149,2025-07-02T23:36:02.255702
+Male,50,1,1,Yes,Private,Urban,100.0,25.0,never smoked,0,0.39938088163444085,2025-07-03T00:12:05.913418
+Female,41,1,0,Yes,Self-employed,Rural,100.0,54.0,never smoked,0,0.15458522213242987,2025-07-03T00:12:33.445099
+Female,41,1,0,Yes,Self-employed,Rural,100.0,54.0,smokes,0,0.1539103195014425,2025-07-03T00:12:39.593887

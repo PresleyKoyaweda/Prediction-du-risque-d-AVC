@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 from api.model_loader import load_model_and_predict 
+from datetime import datetime
+import os 
 
 # Configuration de la page
 st.set_page_config(page_title="Détection AVC", page_icon="🧠")
@@ -27,6 +29,8 @@ et permettre une **prise en charge précoce**.
 ##### 🎯 Objectifs
 - Identifier les profils à risque à partir de données médicales
 - Offrir une interface intuitive pour les professionnels de santé
+
+Le jeu de données utilisé présente un déséquilibre marqué : **seulement 4,87 % des 5210 observations concernent des patients ayant subi un AVC**. Pour remédier à ce déséquilibre, des techniques de rééchantillonnage ont été utilisées afin d’améliorer la performance du modèle sur la classe minoritaire.
 """)
 
 # Formulaire de saisie
@@ -65,8 +69,26 @@ if submitted:
         prediction, proba = load_model_and_predict(input_data)
         st.success(f"✅ Prédiction AVC : {'Oui (1)' if prediction else 'Non (0)'}")
         st.info(f"🧪 Probabilité estimée : {round(proba, 3)}")
+        
+        
+        #Log de prediction
+        log_data = input_data.copy()
+        log_data["prediction"] = prediction
+        log_data["probability"] = proba
+        log_data["timestamp"] = datetime.now().isoformat()
+
+        #Ajout a mon CVS
+        os.makedirs("logs", exist_ok=True)
+        
+        log_file = "logs/predictions.csv"
+        write_header = not os.path.exists(log_file) or os.stat(log_file).st_size == 0
+        
+        log_data.to_csv(log_file, mode="a", header=write_header, index=False)
+        
+        
     except Exception as e:
         st.error(f"❌ Erreur de prédiction : {str(e)}")
+        
 
 # Pied de page
 st.markdown("""
@@ -75,5 +97,6 @@ st.markdown("""
     <small>© 2025 – Outil de prédiction AVC – Fait avec ❤️ par Presley Koyaweda</small>
 </div>
 """, unsafe_allow_html=True)
+
 
 
