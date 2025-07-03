@@ -4,6 +4,8 @@ from api.model_loader import load_model_and_predict
 from datetime import datetime
 import os 
 
+st.set_page_config(page_title="Détection AVC", page_icon="🧠")
+
 #Navigation
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Selectionner une page",["Apercu et Prédiction avec le modèle", "Monitoring des Prédictions"])
@@ -11,7 +13,6 @@ page = st.sidebar.radio("Selectionner une page",["Apercu et Prédiction avec le 
 if page == "Apercu et Prédiction avec le modèle":
 
     # Configuration de la page
-    st.set_page_config(page_title="Détection AVC", page_icon="🧠")
     st.info("ℹ️ Ce site est à des fins de démonstration. Ne remplace pas un avis médical.")
     st.title("🧠 Prédiction du Risque d'AVC")
 
@@ -106,7 +107,6 @@ if page == "Apercu et Prédiction avec le modèle":
     
 elif  page == "Monitoring des Prédictions":
     
-    st.set_page_config(page_title="📊 Monitoring des Prédictions", page_icon="📈")
     st.title("📊 Monitoring des prédictions en temps réel")
 
     log_file = "logs/predictions.csv"
