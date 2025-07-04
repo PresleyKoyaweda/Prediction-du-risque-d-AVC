@@ -1,0 +1,1 @@
+{"columns": ["gender", "age", "hypertension", "heart_disease", "ever_married", "work_type", "Residence_type", "avg_glucose_level", "bmi", "smoking_status"], "data": [["Male", 82.0, 0, 1, "Yes", "Private", "Urban", 144.9, 26.4, "smokes"]]}

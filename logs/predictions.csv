@@ -1,10 +1,55 @@
-gender,age,hypertension,heart_disease,ever_married,work_type,Residence_type,avg_glucose_level,bmi,smoking_status,predictions,probability,timestamp
-Male,50,1,1,Yes,Private,Urban,100.0,25.0,never smoked,0,0.39938088163444085,2025-07-02T23:23:48.558914
-Female,33,0,0,No,Govt_job,Rural,200.0,34.0,smokes,0,0.006540569722078295,2025-07-02T23:24:15.746692
-Male,33,1,0,No,Self-employed,Urban,100.0,32.0,formerly smoked,0,0.09744335293701115,2025-07-02T23:24:43.470448
-Male,33,1,0,No,Self-employed,Urban,100.0,32.0,formerly smoked,0,0.09744335293701115,2025-07-02T23:24:48.394389
-Male,76,1,0,Yes,Self-employed,Rural,194.0,27.0,formerly smoked,1,0.7701498546216602,2025-07-02T23:35:20.114579
-Male,64,1,1,Yes,Govt_job,Rural,194.0,27.0,smokes,1,0.6400836238002149,2025-07-02T23:36:02.255702
-Male,50,1,1,Yes,Private,Urban,100.0,25.0,never smoked,0,0.39938088163444085,2025-07-03T00:12:05.913418
-Female,41,1,0,Yes,Self-employed,Rural,100.0,54.0,never smoked,0,0.15458522213242987,2025-07-03T00:12:33.445099
-Female,41,1,0,Yes,Self-employed,Rural,100.0,54.0,smokes,0,0.1539103195014425,2025-07-03T00:12:39.593887
+gender,age,hypertension,heart_disease,ever_married,work_type,Residence_type,avg_glucose_level,bmi,smoking_status,name,id_prediction,predictions,probability,true_label,timestamp
+Male,50,1,1,Yes,Private,Urban,100.0,25.0,never smoked,,a4f13c89-8175-48e8-9ed9-37a9cd01b96f,0,0.39938088163444085,,2025-07-03T22:15:42.040821
+Male,50,1,1,Yes,Private,Urban,100.0,25.0,never smoked,,f7f19334-587c-11f0-b57a-c8154ea7b060,0,0.39938088163444085,,2025-07-03T22:17:00.750856
+Male,50,1,1,Yes,Private,Urban,100.0,25.0,never smoked,,f96508d6-587c-11f0-9742-c8154ea7b060,0,0.39938088163444085,,2025-07-03T22:17:03.185255
+Male,50,1,1,Yes,Private,Urban,100.0,25.0,never smoked,,fa7190e8-587c-11f0-a82e-c8154ea7b060,0,0.39938088163444085,,2025-07-03T22:17:04.945083
+Female,89,1,1,Yes,Private,Urban,246.5,30.8,smokes,,8a357937-148d-4422-87c0-0900a87a50ce,1,0.6536,1,2025-07-03T12:51:13.952858
+Male,66,1,1,Yes,Govt_job,Rural,235.1,29.8,smokes,,c94b6122-032b-46ef-a20d-239ad8916893,1,0.9134,1,2025-07-03T14:33:13.952970
+Female,44,1,1,Yes,Self-employed,Rural,196.2,25.6,formerly smoked,,8755f041-0bed-4576-8409-4fa8a2f2a252,1,0.7669,1,2025-07-04T01:54:13.953042
+Male,84,1,1,Yes,Govt_job,Urban,189.0,35.4,smokes,,22546335-be3c-479a-bb65-204732a37dc9,1,0.8354,1,2025-07-03T12:37:13.953110
+Male,70,1,1,Yes,Govt_job,Urban,145.3,32.2,never smoked,,ea36de16-882c-4f8f-9905-611fcd26af60,1,0.6743,1,2025-07-03T18:16:13.953162
+Male,66,1,1,Yes,Self-employed,Rural,175.5,30.9,never smoked,,a09e7f37-8399-4500-8d52-fba154a42a36,1,0.7733,1,2025-07-03T19:58:13.953206
+Male,57,1,1,Yes,Self-employed,Urban,240.4,30.0,formerly smoked,,91901ae9-8a08-4e97-b213-22d20f06c919,1,0.6476,1,2025-07-03T15:28:13.953253
+Male,53,1,1,Yes,Private,Urban,194.8,39.1,formerly smoked,,5893d41d-2f0f-4724-89f1-1f8313d93bd0,1,0.909,1,2025-07-03T13:01:13.953327
+Female,57,1,1,Yes,Private,Urban,170.2,39.1,formerly smoked,,cbbd6c3d-3e74-4cdf-aa9c-ac9f2b8d48f5,1,0.8961,1,2025-07-03T11:21:13.953545
+Male,67,1,1,Yes,Private,Urban,185.5,29.1,never smoked,,d6b87651-c6f0-4e72-b449-ebc13efe9570,1,0.6875,1,2025-07-04T00:12:13.953646
+Male,74,1,1,Yes,Private,Rural,236.5,27.6,never smoked,,6a8d49f4-11cd-430a-a4e2-254055573144,1,0.6277,1,2025-07-03T23:29:13.953687
+Male,65,1,1,Yes,Private,Urban,170.0,25.8,never smoked,,93dac829-25db-4bfd-adc5-52295c9053e3,1,0.6242,1,2025-07-03T13:30:13.953726
+Female,41,1,1,Yes,Self-employed,Rural,237.2,32.4,never smoked,,c36a6fa3-2d90-46f4-8e60-894059b1ade3,1,0.814,1,2025-07-03T13:43:13.953769
+Male,69,1,1,Yes,Govt_job,Rural,144.7,35.2,never smoked,,0a4f5673-b85e-46ab-b1ae-aefedddd598a,1,0.9225,1,2025-07-03T19:47:13.953811
+Female,66,1,1,Yes,Private,Urban,193.1,34.5,never smoked,,6d2d54cf-2264-4a8f-a4aa-d08ddc9ac74c,1,0.7316,1,2025-07-04T00:47:13.953849
+Female,60,1,1,Yes,Self-employed,Rural,158.6,39.4,smokes,,9302821e-8a70-4647-a5b9-cbe71803034e,1,0.6506,1,2025-07-04T00:57:13.953898
+Male,77,1,1,Yes,Self-employed,Urban,236.4,37.6,never smoked,,f91fb77c-bdd9-447e-8614-7221334478af,1,0.6453,1,2025-07-03T22:59:13.954021
+Female,49,1,1,Yes,Govt_job,Urban,170.7,26.1,formerly smoked,,5dbf65bb-4e85-4d62-b06c-d5228b1cbb36,1,0.7454,1,2025-07-03T23:40:13.954095
+Female,72,1,1,Yes,Govt_job,Rural,179.7,36.2,smokes,,9b0f63be-a5ce-4c4d-8342-e7b16c3e4e02,1,0.9476,1,2025-07-04T02:33:13.954143
+Female,69,1,1,Yes,Private,Rural,239.7,34.0,formerly smoked,,0d946ed4-cd9f-48a0-ba2e-59bfda4f9093,1,0.7106,1,2025-07-03T17:07:13.954174
+Male,57,1,1,Yes,Govt_job,Urban,231.8,34.1,never smoked,,c4c6dca2-342f-44a6-aa8a-41e0c3793b25,1,0.7183,1,2025-07-03T21:12:13.954201
+Male,77,1,1,Yes,Private,Urban,222.1,25.6,never smoked,,0eebce1a-82ef-4a82-a083-535055f6a871,1,0.6652,1,2025-07-03T21:11:13.954219
+Female,71,1,1,Yes,Private,Urban,204.5,30.9,never smoked,,7dbede02-a82b-48a0-8770-6747b525bce6,1,0.7082,1,2025-07-03T19:35:13.954235
+Female,81,1,1,Yes,Self-employed,Urban,247.6,34.5,smokes,,ca80d297-debc-4bc9-92d4-c362303b6c85,1,0.637,1,2025-07-03T10:41:13.954251
+Male,45,1,1,Yes,Self-employed,Rural,216.2,29.6,formerly smoked,,502c5ba5-88e4-4c38-b3a4-4fc7acecfb80,1,0.9247,1,2025-07-03T13:31:13.954266
+Male,49,1,1,Yes,Self-employed,Rural,220.3,30.3,formerly smoked,,e7261622-3002-4f8b-acc8-09eeee2829a3,1,0.9178,1,2025-07-03T20:31:13.954281
+Female,52,1,1,Yes,Private,Rural,175.2,35.4,formerly smoked,,57359f38-cf4f-4e72-b7bc-ce0ebc2c7cbc,1,0.6506,1,2025-07-04T03:11:13.954296
+Female,71,1,1,Yes,Govt_job,Rural,230.1,28.3,formerly smoked,,9d61402e-1873-475e-8ff0-081abc7a34d2,1,0.6891,1,2025-07-03T13:07:13.954311
+Female,71,1,1,Yes,Govt_job,Urban,211.9,35.9,formerly smoked,,1a53ff81-d5e1-45d1-af82-ea03ace8531a,1,0.7752,1,2025-07-03T23:45:13.954328
+Male,75,1,1,Yes,Private,Urban,183.2,32.3,smokes,,30ec5c05-6db8-44f6-a4e9-6e032abde520,1,0.8611,1,2025-07-03T22:31:13.954352
+Male,20,0,0,No,Private,Rural,80.7,29.4,formerly smoked,,3923cb33-b20e-4873-88c6-775c2ce22046,0,0.0815,0,2025-07-03T19:35:13.954431
+Female,49,0,0,Yes,Govt_job,Urban,104.9,28.6,formerly smoked,,5b732c59-4bd3-4596-9072-e86b407e1f80,0,0.289,0,2025-07-03T16:24:13.954474
+Male,60,0,0,Yes,Self-employed,Urban,117.1,19.8,smokes,,ce4c7e3f-1a04-4a1f-8eb6-a9ef92d8762b,0,0.2205,0,2025-07-03T12:59:13.954509
+Male,55,1,0,Yes,Govt_job,Urban,86.8,22.5,smokes,,c4783463-1846-4dd5-a0c1-64ace0648d02,0,0.258,0,2025-07-03T15:12:13.954809
+Female,42,1,1,Yes,Self-employed,Rural,125.6,26.0,never smoked,,9a051cd0-e904-4bb8-816b-1c2915183d36,0,0.3709,0,2025-07-03T15:49:13.954916
+Female,37,1,0,Yes,Self-employed,Urban,81.6,19.8,smokes,,0da41c5c-03de-42be-a940-e55b765c46bf,0,0.0411,0,2025-07-03T19:52:13.954985
+Male,32,1,0,Yes,Private,Rural,123.8,25.2,formerly smoked,,2bdc6e06-d673-4072-8184-435630b9cbdf,0,0.358,0,2025-07-03T11:24:13.955034
+Male,28,1,0,Yes,Private,Rural,129.9,22.6,smokes,,0a7d1adc-292d-458c-8115-88ce82e6d683,0,0.1351,0,2025-07-03T14:47:13.955163
+Male,56,1,0,Yes,Govt_job,Rural,106.9,29.4,smokes,,702d718c-33cc-42a9-91fd-a18587e3c086,0,0.3549,0,2025-07-03T22:56:13.955268
+Female,21,0,1,No,Govt_job,Rural,112.3,29.4,smokes,,55dfe861-17a3-41c7-884b-66c93584363a,0,0.3399,0,2025-07-03T13:03:13.955334
+Female,54,0,0,Yes,Govt_job,Urban,84.4,24.9,smokes,,e9683ed7-e1d0-4da4-8ba3-ca0a3610a6f3,0,0.1227,0,2025-07-03T13:35:13.955370
+Female,22,0,0,No,Govt_job,Rural,112.3,27.9,never smoked,,9dbc3857-3cf8-449c-a99a-8203d3db69cb,0,0.1912,0,2025-07-03T12:56:13.955412
+Female,29,1,0,Yes,Private,Rural,92.7,22.8,smokes,,8845423e-62c5-4ae0-85dd-a514dcf49c18,0,0.0176,0,2025-07-03T22:15:13.955443
+Male,37,0,0,Yes,Self-employed,Urban,125.4,22.8,smokes,,9a0ec8f9-e659-400f-a6a5-d77a87414c1b,0,0.2272,0,2025-07-03T21:50:13.955542
+Male,27,0,0,Yes,Govt_job,Rural,88.5,29.6,smokes,,a9ed2296-95b2-4b64-83e0-de87613251b0,0,0.2232,0,2025-07-03T23:48:13.955618
+Male,23,0,0,No,Govt_job,Rural,122.8,19.5,smokes,,b4ab3c9b-03b8-4e39-a38c-1cfca4f7f480,0,0.3591,0,2025-07-03T23:19:13.955692
+Female,25,0,1,No,Govt_job,Urban,98.9,28.8,formerly smoked,,9c9aa6bc-4f80-4b54-946c-da1a234056f4,0,0.2791,0,2025-07-04T01:59:13.955753
+Female,55,1,1,Yes,Govt_job,Rural,104.1,20.6,formerly smoked,,cfa1cc67-aca2-45e4-a369-e0ed5d016682,0,0.1803,0,2025-07-03T18:35:13.955802
+Female,40,1,0,Yes,Self-employed,Urban,86.6,25.1,smokes,,5dfcabc4-3925-4251-89c8-ef419fbf58f3,0,0.3372,0,2025-07-03T15:21:13.955865
+Male,51,0,0,Yes,Govt_job,Rural,84.8,28.4,smokes,,3d9f7d8f-a6fe-43b5-898c-3a78b0c4c9dc,0,0.1151,0,2025-07-03T11:43:13.955912

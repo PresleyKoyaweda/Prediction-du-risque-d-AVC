@@ -1,0 +1,21 @@
+gender,age,hypertension,heart_disease,ever_married,work_type,Residence_type,avg_glucose_level,bmi,smoking_status,name,id_prediction,predictions,probability,true_label,timestamp,predictions_label
+Female,52,1,1,Yes,Private,Rural,175.2,35.4,formerly smoked,,57359f38-cf4f-4e72-b7bc-ce0ebc2c7cbc,1,0.6506,1.0,2025-07-04 03:11:13.954296,AVC
+Female,72,1,1,Yes,Govt_job,Rural,179.7,36.2,smokes,,9b0f63be-a5ce-4c4d-8342-e7b16c3e4e02,1,0.9476,1.0,2025-07-04 02:33:13.954143,AVC
+Female,25,0,1,No,Govt_job,Urban,98.9,28.8,formerly smoked,,9c9aa6bc-4f80-4b54-946c-da1a234056f4,0,0.2791,0.0,2025-07-04 01:59:13.955753,Pas d'AVC
+Female,44,1,1,Yes,Self-employed,Rural,196.2,25.6,formerly smoked,,8755f041-0bed-4576-8409-4fa8a2f2a252,1,0.7669,1.0,2025-07-04 01:54:13.953042,AVC
+Female,60,1,1,Yes,Self-employed,Rural,158.6,39.4,smokes,,9302821e-8a70-4647-a5b9-cbe71803034e,1,0.6506,1.0,2025-07-04 00:57:13.953898,AVC
+Female,66,1,1,Yes,Private,Urban,193.1,34.5,never smoked,,6d2d54cf-2264-4a8f-a4aa-d08ddc9ac74c,1,0.7316,1.0,2025-07-04 00:47:13.953849,AVC
+Male,67,1,1,Yes,Private,Urban,185.5,29.1,never smoked,,d6b87651-c6f0-4e72-b449-ebc13efe9570,1,0.6875,1.0,2025-07-04 00:12:13.953646,AVC
+Male,27,0,0,Yes,Govt_job,Rural,88.5,29.6,smokes,,a9ed2296-95b2-4b64-83e0-de87613251b0,0,0.2232,0.0,2025-07-03 23:48:13.955618,Pas d'AVC
+Female,71,1,1,Yes,Govt_job,Urban,211.9,35.9,formerly smoked,,1a53ff81-d5e1-45d1-af82-ea03ace8531a,1,0.7752,1.0,2025-07-03 23:45:13.954328,AVC
+Female,49,1,1,Yes,Govt_job,Urban,170.7,26.1,formerly smoked,,5dbf65bb-4e85-4d62-b06c-d5228b1cbb36,1,0.7454,1.0,2025-07-03 23:40:13.954095,AVC
+Male,74,1,1,Yes,Private,Rural,236.5,27.6,never smoked,,6a8d49f4-11cd-430a-a4e2-254055573144,1,0.6277,1.0,2025-07-03 23:29:13.953687,AVC
+Male,23,0,0,No,Govt_job,Rural,122.8,19.5,smokes,,b4ab3c9b-03b8-4e39-a38c-1cfca4f7f480,0,0.3591,0.0,2025-07-03 23:19:13.955692,Pas d'AVC
+Male,77,1,1,Yes,Self-employed,Urban,236.4,37.6,never smoked,,f91fb77c-bdd9-447e-8614-7221334478af,1,0.6453,1.0,2025-07-03 22:59:13.954021,AVC
+Male,56,1,0,Yes,Govt_job,Rural,106.9,29.4,smokes,,702d718c-33cc-42a9-91fd-a18587e3c086,0,0.3549,0.0,2025-07-03 22:56:13.955268,Pas d'AVC
+Male,75,1,1,Yes,Private,Urban,183.2,32.3,smokes,,30ec5c05-6db8-44f6-a4e9-6e032abde520,1,0.8611,1.0,2025-07-03 22:31:13.954352,AVC
+Male,50,1,1,Yes,Private,Urban,100.0,25.0,never smoked,,fa7190e8-587c-11f0-a82e-c8154ea7b060,0,0.3993808816344408,,2025-07-03 22:17:04.945083,Pas d'AVC
+Male,50,1,1,Yes,Private,Urban,100.0,25.0,never smoked,,f96508d6-587c-11f0-9742-c8154ea7b060,0,0.3993808816344408,,2025-07-03 22:17:03.185255,Pas d'AVC
+Male,50,1,1,Yes,Private,Urban,100.0,25.0,never smoked,,f7f19334-587c-11f0-b57a-c8154ea7b060,0,0.3993808816344408,,2025-07-03 22:17:00.750856,Pas d'AVC
+Male,50,1,1,Yes,Private,Urban,100.0,25.0,never smoked,,a4f13c89-8175-48e8-9ed9-37a9cd01b96f,0,0.3993808816344408,,2025-07-03 22:15:42.040821,Pas d'AVC
+Female,29,1,0,Yes,Private,Rural,92.7,22.8,smokes,,8845423e-62c5-4ae0-85dd-a514dcf49c18,0,0.0176,0.0,2025-07-03 22:15:13.955443,Pas d'AVC
