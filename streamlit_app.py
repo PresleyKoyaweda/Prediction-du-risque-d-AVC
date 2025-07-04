@@ -3,14 +3,20 @@ import pandas as pd
 from api.model_loader import load_model_and_predict 
 from datetime import datetime
 import os 
+import uuid #pour générer un id unique
+from scipy.stats import ks_2samp
 
 st.set_page_config(page_title="Détection AVC", page_icon="🧠")
 
 #Navigation
-st.sidebar.title("Navigation")
-page = st.sidebar.radio("Selectionner une page",["Apercu et Prédiction avec le modèle", "Monitoring des Prédictions"])
 
-if page == "Apercu et Prédiction avec le modèle":
+PAGE_PREDICTION = "Interface de prédiction"
+PAGE_MONITORING = "Suivi du modèle"
+
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Aller à",[PAGE_PREDICTION, PAGE_MONITORING])
+
+if page == PAGE_PREDICTION:
 
     # Configuration de la page
     st.info("ℹ️ Ce site est à des fins de démonstration. Ne remplace pas un avis médical.")
@@ -44,6 +50,7 @@ if page == "Apercu et Prédiction avec le modèle":
     st.markdown("Entrez les informations médicales pour estimer le risque d'AVC lié au patient.")
 
     with st.form("form"):
+        name = st.text_input("Nom du patient (optionnel)")
         gender = st.selectbox("Sexe", ["Male", "Female", "Other"])
         age = st.slider("Âge", 0, 100, 50)
         hypertension = st.selectbox("Hypertension", ["Yes", "No"])
@@ -59,6 +66,9 @@ if page == "Apercu et Prédiction avec le modèle":
 
     # Appel modèle après soumission
     if submitted:
+    
+        
+        # Données utilisées uniquement pour le modèle
         input_data = pd.DataFrame([{
             "gender": gender,
             "age": age,
@@ -80,8 +90,11 @@ if page == "Apercu et Prédiction avec le modèle":
             
             #Log de prediction
             log_data = input_data.copy()
+            log_data["name"] = name
+            log_data["id_prediction"] = str(uuid.uuid1())
             log_data["prediction"] = prediction
             log_data["probability"] = proba
+            log_data["true_label"] = None
             log_data["timestamp"] = datetime.now().isoformat()
 
             #Ajout a mon CVS
@@ -105,9 +118,24 @@ if page == "Apercu et Prédiction avec le modèle":
     </div>
     """, unsafe_allow_html=True)
     
-elif  page == "Monitoring des Prédictions":
+elif  page == PAGE_MONITORING:
     
-    st.title("📊 Monitoring des prédictions en temps réel")
+
+    st.title("📊 Monitoring des prédictions")
+    
+    with st.expander("ℹ️ Informations sur les métriques de performance", expanded=True):
+        st.warning("""
+        ⚠️ Les étiquettes réelles (`true labels`) ne sont pas disponibles pour les prédictions en production.  
+        ❌ Cela rend impossible le calcul de métriques telles que : précision, rappel, F1-score, AUC, etc.  
+
+        ✅ Le monitoring repose donc uniquement sur l’analyse :
+
+        - des distributions des probabilités de sortie (`proba`)
+        - de la fréquence des classes prédites (`predictions`)
+        - des dérives statistiques sur les variables d’entrée (test de Kolmogorov–Smirnov)
+        - de l’incertitude globale via l'entropie de la distribution des prédictions
+        """)
+
 
     log_file = "logs/predictions.csv"
 
@@ -131,7 +159,7 @@ elif  page == "Monitoring des Prédictions":
     st.write(df[["predictions", "probability"]].describe())
 
     # Répartition des prédictions
-    st.subheader("📊 Répartition des prédictions")
+    st.subheader("📈 Répartition des prédictions")
     df["predictions_label"] = df["predictions"].map({0: "Pas d'AVC", 1: "AVC"})
     st.bar_chart(df["predictions_label"].value_counts(normalize=True))
 
@@ -146,7 +174,36 @@ elif  page == "Monitoring des Prédictions":
     with st.expander("📄 Voir les données brutes"):
         st.dataframe(df.tail(20))
         
+    import matplotlib.pyplot as plt
+    import seaborn as sns 
+    
+    
+    #Chargement du train.csv initial et predictions.csv
+    recent = pd.read_csv("logs/predictions.csv")
+    reference = pd.read_csv("data/train.csv")
+
+    
+    for col in ["age", "bmi", "avg_glucose_level"] :
+        fig, ax = plt.subplots()
+        sns.kdeplot(reference[col], label = "Train", ax=ax)
+        sns.kdeplot(recent[col], label = "Production", ax=ax)
+        ax.set_title(f"Dérive potentielle sur {col}")
+        st.pyplot(fig)
         
+    
+    for col in ["age", "bmi", "avg_glucose_level"] :
+        ks_stat, p_value = ks_2samp(reference[col], recent[col])
+        if p_value < 0.05:
+            st.warning(f"Dérive détectée sur '{col}' (p-value = {p_value:.3f})")
+        
+    
+    from scipy.stats import entropy
+    pred_dist = df["predictions"].value_counts(normalize=True)
+    pred_entropy = entropy(pred_dist)
+    st.metric("Entropie des prédictions", round(pred_entropy, 3))
+    
+
+      
     # Pied de page
     st.markdown("""
     <hr style="border: 0.5px solid #ddd;">
