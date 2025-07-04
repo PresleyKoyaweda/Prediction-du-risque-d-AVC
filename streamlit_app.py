@@ -120,7 +120,7 @@ if page == PAGE_PREDICTION:
     
 elif  page == PAGE_MONITORING:
     
-
+    st.info("ℹ️ Ce site est à des fins de démonstration. Ne remplace pas un avis médical.")
     st.title("📊 Monitoring des prédictions")
     
     # 🔍 Explication pédagogique
