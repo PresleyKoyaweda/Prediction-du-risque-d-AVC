@@ -123,30 +123,34 @@ elif  page == PAGE_MONITORING:
 
     st.title("📊 Monitoring des prédictions")
     
+    # 🔍 Explication pédagogique
     with st.expander("ℹ️ Informations sur les métriques de performance", expanded=True):
         st.warning("""
         ⚠️ Les étiquettes réelles (`true labels`) ne sont pas disponibles pour les prédictions en production.  
         ❌ Cela rend impossible le calcul de métriques telles que : précision, rappel, F1-score, AUC, etc.  
 
-        ✅ Le monitoring repose donc uniquement sur l’analyse :
+        ✅ Le monitoring repose donc uniquement sur :
+        - les distributions des probabilités de sortie (`probability`)
+        - la fréquence des classes prédites (`predictions`)
+        - les dérives statistiques sur les variables d’entrée (test de Kolmogorov–Smirnov)
+        - l’incertitude globale via l'entropie de la distribution des prédictions
 
-        - des distributions des probabilités de sortie (`proba`)
-        - de la fréquence des classes prédites (`predictions`)
-        - des dérives statistiques sur les variables d’entrée (test de Kolmogorov–Smirnov)
-        - de l’incertitude globale via l'entropie de la distribution des prédictions
+        🔁 Ce système permet de :
+        - détecter les changements suspects dans les données ou dans le comportement du modèle
+        - alerter un expert pour annotation manuelle
+        - lancer un éventuel ré-entraînement (manuel ou semi-auto) une fois les vraies étiquettes disponibles
         """)
 
 
     log_file = "logs/predictions.csv"
+    reference_file = "data/train.csv"
 
     if not os.path.exists(log_file):
         st.warning("📭 Aucune donnée de prédiction trouvée pour le moment.")
         st.stop()
 
-    # Chargement des prédictions
     df = pd.read_csv(log_file)
 
-    # Vérifie que les colonnes sont correctes
     if "timestamp" in df.columns:
         df["timestamp"] = pd.to_datetime(df["timestamp"])
         df = df.sort_values("timestamp")
@@ -154,56 +158,83 @@ elif  page == PAGE_MONITORING:
         st.error("⛔ La colonne 'timestamp' est absente du fichier CSV.")
         st.stop()
 
-    # Statistiques de base
+    # 📌 Statistiques globales
     st.subheader("📌 Statistiques générales")
     st.write(df[["predictions", "probability"]].describe())
 
-    # Répartition des prédictions
+    # 📈 Répartition des classes
     st.subheader("📈 Répartition des prédictions")
     df["predictions_label"] = df["predictions"].map({0: "Pas d'AVC", 1: "AVC"})
     st.bar_chart(df["predictions_label"].value_counts(normalize=True))
 
-    # Évolution temporelle
+    # ⏳ Évolution temporelle
     st.subheader("🕒 Évolution temporelle de la probabilité")
     if len(df) < 10:
         st.warning("⏳ Pas encore assez de prédictions pour afficher une moyenne glissante (minimum 10).")
     else:
         st.line_chart(df.set_index("timestamp")["probability"].rolling(window=10).mean())
 
-    # Données brutes
+    # 📄 Données brutes
     with st.expander("📄 Voir les données brutes"):
         st.dataframe(df.tail(20))
-        
-    import matplotlib.pyplot as plt
-    import seaborn as sns 
-    
-    
-    #Chargement du train.csv initial et predictions.csv
-    recent = pd.read_csv("logs/predictions.csv")
-    reference = pd.read_csv("data/train.csv")
 
-    
-    for col in ["age", "bmi", "avg_glucose_level"] :
+    # === ⚠️ Analyse de dérive & alertes automatiques ===
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    from scipy.stats import ks_2samp, entropy
+
+    reference = pd.read_csv(reference_file)
+    recent = df.copy()
+    alertes = []
+    EXPORT_ALERTS_FILE = "logs/cas_a_annoter.csv"
+
+    st.subheader("📉 Analyse des dérives statistiques")
+
+    for col in ["age", "bmi", "avg_glucose_level"]:
         fig, ax = plt.subplots()
-        sns.kdeplot(reference[col], label = "Train", ax=ax)
-        sns.kdeplot(recent[col], label = "Production", ax=ax)
+        sns.kdeplot(reference[col], label="Train", ax=ax)
+        sns.kdeplot(recent[col], label="Production", ax=ax)
         ax.set_title(f"Dérive potentielle sur {col}")
         st.pyplot(fig)
-        
-    
-    for col in ["age", "bmi", "avg_glucose_level"] :
+
+        # KS Test
         ks_stat, p_value = ks_2samp(reference[col], recent[col])
-        if p_value < 0.05:
-            st.warning(f"Dérive détectée sur '{col}' (p-value = {p_value:.3f})")
-        
-    
-    from scipy.stats import entropy
+        if p_value < 0.01:
+            st.error(f"🚨 Dérive détectée sur '{col}' (p-value = {p_value:.4f})")
+            alertes.append(f"Dérive sur {col} (p = {p_value:.4f})")
+        elif p_value < 0.05:
+            st.warning(f"⚠️ Dérive possible sur '{col}' (p-value = {p_value:.4f})")
+
+    # 🔀 Entropie
     pred_dist = df["predictions"].value_counts(normalize=True)
     pred_entropy = entropy(pred_dist)
     st.metric("Entropie des prédictions", round(pred_entropy, 3))
-    
 
-      
+    if pred_entropy < 0.4:
+        st.warning("⚠️ Entropie faible : le modèle semble trop sûr de ses prédictions.")
+        alertes.append(f"Entropie basse : {round(pred_entropy, 3)}")
+
+    # 📊 Variation du taux de prédictions
+    if "stroke" in reference.columns:
+        avc_rate_ref = reference["stroke"].mean()
+        avc_rate_pred = df["predictions"].mean()
+        variation = abs(avc_rate_pred - avc_rate_ref)
+        if variation > 0.2:
+            st.warning(f"⚠️ Variation anormale du taux de prédiction AVC : {avc_rate_pred:.2%} vs {avc_rate_ref:.2%}")
+            alertes.append(f"Variation taux AVC : {avc_rate_pred:.2%} vs {avc_rate_ref:.2%}")
+
+    # 💡 Résumé des alertes et export
+    if alertes:
+        st.subheader("🚨 Alerte automatique de dérive")
+        for msg in alertes:
+            st.write("•", msg)
+
+        # Export des 20 dernières prédictions pour annotation
+        recent.sort_values("timestamp", ascending=False).head(20).to_csv(EXPORT_ALERTS_FILE, index=False)
+        st.info(f"📁 20 derniers cas exportés pour annotation : `{EXPORT_ALERTS_FILE}`")
+    else:
+        st.success("✅ Aucune dérive détectée pour le moment.")
+
     # Pied de page
     st.markdown("""
     <hr style="border: 0.5px solid #ddd;">
@@ -211,7 +242,6 @@ elif  page == PAGE_MONITORING:
         <small>© 2025 – Outil de prédiction AVC – Fait avec ❤️ par Presley Koyaweda</small>
     </div>
     """, unsafe_allow_html=True)
-
 
 
 
